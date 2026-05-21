@@ -4,7 +4,7 @@ export async function homeController(req,res){
 
 
     await getForm()
-    res.render("index",{title: "Home"})
+    res.render("index",{user: req.user})
 
 
 }

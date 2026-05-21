@@ -1,9 +1,10 @@
 import { sumbitForm } from "../db/methods.js";
-
+import bcrypt from "bcryptjs"
 export default async function formController(req,res){
     try{ 
-        const {username, password} = req.body
-        sumbitForm(username,password)
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const {username} = req.body
+        sumbitForm(username,hashedPassword)
         res.redirect("/")
 
     }
